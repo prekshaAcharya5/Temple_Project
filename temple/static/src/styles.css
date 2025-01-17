@@ -552,6 +552,7 @@ video {
 
 [hidden]:where(:not([hidden="until-found"])) {
   display: none;
+<<<<<<< HEAD
 }
 
 .container {
@@ -2097,4 +2098,6 @@ video {
     --tw-ring-opacity: 1;
     --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity, 1));
   }
+=======
+>>>>>>> 8a3f6e6ae83ea24d00fa167560e2f4aaa7e7f071
 }
