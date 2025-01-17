@@ -21,3 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('mandir',include('mandir.urls'))
 ]
+
+
+
+kjsdhfjkhsdfkjhd
