@@ -2,12 +2,26 @@
 module.exports = {
   content: [ './mandir/templates/**/*.html'],
   theme: {
-  extend: {},
+  extend: {
+    keyframes:{
+      "slide-up":{
+        form:{
+          scale: 0.8
+        },
+        to:{
+          scale: 1
+        }
+      }
+    }
+    ,animation:{
+      "slide-up": "side-up 1s infinate"
+    }
   },
-  plugins: [],
-<<<<<<< HEAD
-  };
-=======
+  },
+  plugins: [
+    
+    require("tailwindcss-animate"),
+  ],
   };
 
->>>>>>> 8a3f6e6ae83ea24d00fa167560e2f4aaa7e7f071
+
