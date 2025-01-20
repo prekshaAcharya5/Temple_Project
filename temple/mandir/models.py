@@ -1,8 +1,7 @@
-from django.db import models
 
-# Create your models here.
 from django.db import models
 from django.core.validators import RegexValidator
+from django.contrib.auth.models import User
 
 
 # class User(models.Model):
@@ -101,3 +100,46 @@ class ContactUs(models.Model):
     def __str__(self):
         return self.name
 
+class Event(models.Model):
+    id=models.AutoField(primary_key=True)
+    title=models.CharField(max_length=255)
+    event_date=models.DateTimeField()
+    images=models.ImageField(upload_to='event_images/')
+    description=models.TextField()
+    content_id=models.ForeignKey(Content,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.content_id.id
+    
+class Notice(models.Model):
+    id=models.AutoField(primary_key=True)
+    title=models.CharField(max_length=150)
+    subtitle=models.CharField(max_length=255)
+    description=models.TextField()
+    image=models.ImageField(upload_to='notice_image')
+    content_id=models.ForeignKey(Content,on_delete=models.CASCADE,db_column='content_id')
+
+    def __str__(self):
+        return self.content_id.id
+    
+
+class Blogs(models.Model):
+    id=models.AutoField(primary_key=True)
+    title=models.CharField(max_length=150)
+    subtitle=models.CharField(max_length=255)
+    description=models.TextField()
+    image=models.ImageField(upload_to='blog_image/')
+    created_at=models.DateTimeField()
+    content_id=models.ForeignKey(Content,on_delete=models.CASCADE,db_column='content_id')
+    author=models.ForeignKey(User,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.content_id.id
+
+class mission_vision(request):
+    id=models.AutoField(primary_key=True)
+    description=models.TextField()
+    content_id=models.ForeignKey(Content,on_delete=models.CASCADE,db_column='content_id')
+
+    def __str__(self):
+        return self.content_id.id

@@ -36,7 +36,6 @@ def add_committe(request):
     return render(request, 'front/add_committe.html')
 
 def committe(request):
-    # Fetch all committees to display
     committees = Committee.objects.all()
     return render(request, 'front/committe.html', {'committees': committees})
 
@@ -50,7 +49,7 @@ def create_committee_member(request):
         c_id = request.POST.get('committee_id')
         committee = get_object_or_404(Committee, id=c_id)
         
-        # Create and save the CommitteeMember instance
+        # CommitteeMember ko instance create ra save garna
         committemember=CommitteeMember.objects.create(
             name=name,
             address=address,
@@ -62,43 +61,9 @@ def create_committee_member(request):
         committemember.save()
         return redirect('add_member')
 
-    # Fetch committees for the dropdown
+    # drop-down ma data fetch garna
     committees = Committee.objects.all()
     return render(request, 'front/create_committee_member.html', {'committees': committees})
-#  def create_committee_member(request):
-#     if request.method == 'POST':
-#         # Handle form submission (process POST data)
-#         name = request.POST.get('name')
-#         address = request.POST.get('address')
-#         post = request.POST.get('post')
-#         position = request.POST.get('position')
-#         image = request.FILES.get('image')
-#         committee_id = request.POST.get('committee_id')
-
-#         # Validate committee existence
-#         try:
-#             committee = Committee.objects.get(id=committee_id)
-#         except Committee.DoesNotExist:
-#             return HttpResponseBadRequest("Invalid committee ID.")
-
-#         # Create a new committee member
-#         CommitteeMember.objects.create(
-#             name=name,
-#             address=address,
-#             post=post,
-#             position=position,
-#             image=image,
-#             c_id=committee
-#         )
-#         return HttpResponse("Committee member created successfully.")
-    
-#     elif request.method == 'GET':
-#         # Render the form template
-#         committees = Committee.objects.all()
-#         return render(request, 'fronts/create_committee_member.html', {'committees': committees})
-    
-#     else:
-#         return HttpResponseBadRequest("Invalid request method.")
 
 def committe_member(request):
     members=CommitteeMember.objects.all()
