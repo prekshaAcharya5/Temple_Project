@@ -59,6 +59,7 @@ def edit_donor(request,donor_id):
 
 
 def event(request):
+    
     return render(request,'front/event.html')
 
 def gallery(request):
