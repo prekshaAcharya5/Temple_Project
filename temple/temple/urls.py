@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """
 URL configuration for temple project.
 
@@ -22,7 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("mandir/",include("mandir.urls"))
 ]
-=======
 """
 URL configuration for temple project.
 
@@ -47,7 +45,3 @@ urlpatterns = [
     path('mandir',include('mandir.urls'))
 ]
 
-
-
-kjsdhfjkhsdfkjhd
->>>>>>> 8a3f6e6ae83ea24d00fa167560e2f4aaa7e7f071
