@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Donor</title>
+    {% load static %}
+    <link href="{% static 'src/styles.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+    {% include '../components/_navbar.html' %}
+
+    <div class="bg-white border rounded-lg px-8 py-6 mx-auto my-8 max-w-2xl">
+        <h2 class="text-2xl font-medium mb-4">Add Donor</h2>
+        <form method="POST" action="adddoner" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Name Input -->
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                <input type="text" id="name" name="name"
+                    class="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required>
+            </div>
+
+            <!-- Address Input -->
+            <div class="mb-4">
+                <label for="address" class="block text-gray-700 font-medium mb-2">Address</label>
+                <input type="text" id="address" name="address"
+                    class="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required>
+            </div>
+
+            <!-- Phone Input -->
+            <div class="mb-4">
+                <label for="phone_number" class="block text-gray-700 font-medium mb-2">Phone No</label>
+                <input type="number" id="phone_number" name="phone_number"
+                    class="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required>
+            </div>
+
+            <!-- Email Input -->
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                <input type="email" id="email" name="email"
+                    class="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required>
+            </div>
+
+            <!-- Image Upload -->
+            <div class="mb-4">
+                <label for="image" class="block text-gray-700 font-medium mb-2">Upload Image</label>
+                <input type="file" id="image" name="image"
+                    class="w-full text-gray-500 font-medium text-sm bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded" />
+            </div>
+
+            <!-- Amount Input -->
+            <div class="mb-4">
+                <label for="amount" class="block text-gray-700 font-medium mb-2">Amount Donated</label>
+                <input type="number" id="amount" name="amount"
+                    class="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required>
+            </div>
+
+            <!-- Donated Date Input -->
+            <div class="mb-4">
+                <label for="donated_date" class="block text-gray-700 font-medium mb-2">Donated Date</label>
+                <input type="date" id="donated_date" name="donated_date"
+                    class="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

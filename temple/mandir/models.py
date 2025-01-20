@@ -1,7 +1,6 @@
-from django.db import models
-
 # Create your models here.
 from django.db import models
+from django.core.validators import RegexValidator
 
 
 # class User(models.Model):
@@ -59,24 +58,50 @@ class ContentImage(models.Model):
         return f"Image for Content ID: {self.content_id.id}"
 
 
-class Donor(models.Model):
+class BeADonor(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     address = models.TextField()
+    phone_number = models.CharField(
+        max_length=10,default='9812345678',null=False,
+        validators=[
+            RegexValidator(
+                regex=r'^\d{10}$',
+                message="Phone number must be exactly 10 digits.",
+                code='invalid_phone_number'
+            )
+        ],
+    )
+    email = models.EmailField(null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    donated_date = models.DateField()
+    donated_date = models.DateField(null=True)
 
     def __str__(self):
         return self.name
 
 
-class DonorImage(models.Model):
+class AddDonor(models.Model):
     id = models.AutoField(primary_key=True)
-    donor_id = models.ForeignKey(Donor, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    address = models.TextField()
+    phone_number = models.CharField(
+        max_length=10,default='9812345678',null=False,
+        validators=[
+            RegexValidator(
+                regex=r'^\d{10}$',
+                message="Phone number must be exactly 10 digits.",
+                code='invalid_phone_number'
+            )
+        ],
+    )
+    email = models.EmailField(null=True)
     image = models.ImageField(upload_to='donor_images/')
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    donated_date = models.DateField(null=True)
 
     def __str__(self):
-        return f"Image for Donor ID: {self.donor_id.id}"
+        return self.name
+    
 
 
 class ContactUs(models.Model):
