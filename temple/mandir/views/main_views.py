@@ -33,8 +33,8 @@ def add_donor(request):
         amount = request.POST.get("amount")
         donated_date = request.POST.get("donated_date")
 
-        donor = AddDonor(name=name,address=address,phone_number=phone_number,email=email,image=image,amount=amount,donated_date=donated_date)
-        donor.save()
+        donors = AddDonor(name=name,address=address,phone_number=phone_number,email=email,image=image,amount=amount,donated_date=donated_date)
+        donors.save()
         return redirect("home")
     
     return render(request,'front/add_doner.html')
