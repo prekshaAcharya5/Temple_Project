@@ -106,7 +106,7 @@ class Event(models.Model):
     event_date=models.DateTimeField()
     images=models.ImageField(upload_to='event_images/')
     description=models.TextField()
-    content_id=models.ForeignKey(Content,on_delete=models.CASCADE)
+    content_id=models.ForeignKey(Content,on_delete=models.CASCADE,db_column='content_db')
 
     def __str__(self):
         return self.content_id.id
@@ -136,7 +136,7 @@ class Blogs(models.Model):
     def __str__(self):
         return self.content_id.id
 
-class mission_vision(request):
+class mission_vision(models.Model):
     id=models.AutoField(primary_key=True)
     description=models.TextField()
     content_id=models.ForeignKey(Content,on_delete=models.CASCADE,db_column='content_id')
