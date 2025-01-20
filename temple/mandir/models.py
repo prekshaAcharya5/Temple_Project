@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 from django.db import models
+from django.core.validators import RegexValidator
 
 
 # class User(models.Model):
@@ -33,7 +34,7 @@ class CommitteeMember(models.Model):
     post = models.CharField(max_length=100)
     position = models.CharField(max_length=100)
     image = models.ImageField(upload_to='committee_members/')
-    c_id = models.ForeignKey(Committee, on_delete=models.CASCADE)
+    c_id = models.ForeignKey(Committee, on_delete=models.CASCADE,db_column='c_id')
 
     def __str__(self):
         return self.name
@@ -63,6 +64,17 @@ class Donor(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     address = models.TextField()
+    phone_number = models.CharField(
+        max_length=10,null=False,default='9812345678',
+        validators=[
+            RegexValidator(
+                regex=r'^\d{10}$',
+                message="Phone number must be exactly 10 digits.",
+                code='invalid_phone_number'
+            )
+        ],
+    )
+    email=models.EmailField(null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     donated_date = models.DateField()
 

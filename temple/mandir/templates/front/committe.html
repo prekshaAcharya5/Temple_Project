@@ -1,0 +1,21 @@
+<h1>Committee List</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Is Current</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for committee in committees %}
+        <tr>
+            <td>{{ committee.name }}</td>
+            <td>{{ committee.start_date }}</td>
+            <td>{{ committee.end_date }}</td>
+            <td>{{ committee.is_current|yesno:"Yes,No" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
